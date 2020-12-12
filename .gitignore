@@ -4,4 +4,6 @@
 /php
 /phpmyadmin
 
+/www/exercise2/csv-files/*
+
 .DS_Store
