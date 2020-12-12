@@ -3,3 +3,5 @@
 /nginx
 /php
 /phpmyadmin
+
+.DS_Store
