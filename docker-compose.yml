@@ -1,0 +1,65 @@
+version: "3"
+
+services:
+  nginx:
+    build: ./nginx/
+    ports:
+        - 80:80
+    links:
+        - php
+    volumes:
+        - ./www:/var/www/html 
+    networks:
+        uln:
+         ipv4_address: 10.6.0.2
+
+  php:
+    build: ./php/
+    expose:
+        - 9000
+    links:
+        - mysql
+    volumes:
+        - ./www:/var/www/html 
+    networks:
+        uln:
+         ipv4_address: 10.6.0.3
+
+  app:
+    image: php:7.4-fpm
+    volumes:
+        - ./www:/var/www/html
+    command: "true"
+
+  mysql:
+    image: mysql:5.7.31
+    ports:
+        - 3306:3306
+    volumes:
+        - ./mysql:/var/lib/mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: secret
+        MYSQL_DATABASE: webprog 
+        MYSQL_USER: webprog 
+        MYSQL_PASSWORD: webprog
+    networks:
+        uln:
+         ipv4_address: 10.6.0.4
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+        - 8080:80
+    links:
+        - mysql
+    environment:
+        PMA_HOST: mysql
+    networks:
+        uln:
+         ipv4_address: 10.6.0.5
+
+networks:
+    uln:
+     ipam:
+        config:
+         - subnet: 10.6.0.0/16
