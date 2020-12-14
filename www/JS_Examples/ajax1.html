@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ajax 1</title>
+<script>
+function runAjax()
+{
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange  = function()
+  { 
+         if(xhr.readyState  == 4)
+         {
+		    let t = document.getElementById ("responseArea");
+			let t2;
+
+			if(xhr.status  == 200)
+                  t2 = document.createTextNode("Received: "  + xhr.responseText + "<br/>");  // note: HTML tags do not work
+            else
+                  t2 = document.createTextNode("Error code: " + xhr.status);
+            t.appendChild(t2);
+            // t.insertAdjacentHTML("afterend", "Received2: "  + xhr.responseText + "<br/>");
+         }
+  }; 
+
+   xhr.open("GET", "data.txt");
+   xhr.send(null); 
+}
+</script>
+</head>
+
+<body>
+<div id="responseArea"></div>
+<p> Please click <a href="javascript:runAjax()">here</a> to
+    download information with Ajax from server.</p>
+
+</body>
+</html>

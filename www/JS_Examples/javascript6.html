@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>Javascript Image Moving Demo</title>
+        <SCRIPT LANGUAGE="javascript">
+            function initDD()
+            {
+                document.onmousedown = setStatus;
+                document.onmouseup = setStatus;
+                document.onmousemove = dragdrop
+            }
+
+            var ready = false;
+
+            function setStatus(e)
+            {
+                if (e.type=="mouseup" || e.type=="mousedown")
+                {
+                    if (e.type=="mousedown"){
+                        ready = true
+                    }
+                    else
+                    {
+                        document.getElementById("logo").style.left = e.pageX - 100 + "px";
+                        document.getElementById("logo").style.top = e.pageY - 100 + "px";
+                        ready = false
+                    }
+                }
+            }
+
+            function dragdrop(e){
+                if (ready) {
+                    document.getElementById("logo").style.left = e.pageX - 100 + "px";
+                    document.getElementById("logo").style.top = e.pageY - 100 + "px"
+                }
+            }
+        </SCRIPT>
+    </head>
+    <body onload="initDD()">
+        <h1>JS Image Moving Example</h1>
+
+        <div id="logo" style="position:relative">
+            <img src="logoUL.gif" width="100" height="100" />
+        </div>
+
+    </body>
+</html>

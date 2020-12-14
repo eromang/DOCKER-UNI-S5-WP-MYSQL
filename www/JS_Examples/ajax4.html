@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <title>Ajax 4 - JSON</title>
+    <style>
+        #responseArea {
+            color: red;
+            font-size: large;
+        }
+    </style>
+    <script>
+        function runAjax() {
+            let xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    let s = JSON.parse(xhr.response);
+                    document.write(`<div>Received Name is <b>${s.email}</b></div>`);
+                }
+            };
+            xhr.open("GET", "data2.php");
+            xhr.send(null);
+        }
+    </script>
+</head>
+
+<body>
+
+<form name="form1">
+    <input type="button" value="Run Ajax script" onclick="runAjax()"/>
+</form>
+<br/>
+</body>
+</html>

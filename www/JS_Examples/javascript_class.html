@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--suppress ALL -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>javascript Demo: Objects</title>
+<script language="javascript">
+  class Rectangle {
+    constructor(height, width) {
+      this.height = height;
+      this.width = width;
+    }
+    calcArea() {  return this.height * this.width;   }
+  };
+</script>
+</head>
+<body>
+<script language="javascript">
+var r = new Rectangle(100, 200);
+var s = new Rectangle(200, 400);
+r.color = "blue";
+document.writeln("<p>Rectangles before prototype: r.color = ", r.color," &nbsp; s.color = ", s.color, "</p");
+
+Rectangle.prototype.color="red";
+document.writeln("<p>Rectangles after prototype:  r.color = ", r.color," &nbsp; s.color = ", s.color, "</p>");
+
+</script>
+</body>
+</html>

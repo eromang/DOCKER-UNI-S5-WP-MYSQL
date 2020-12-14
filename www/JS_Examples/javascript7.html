@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Javascript Demo Events</title>
+</head>
+
+<body>
+
+<div id="adiv">This is the text on a div, click on my to get an alert. </div>
+<hr />
+
+<script language="javascript">
+var adiv = document.getElementById("adiv");
+adiv.addEventListener('click',
+  function (e) { alert("Click captured");
+            let p = document.getElementById ("adiv");
+            let newP = document.createElement ("div");
+            let newText = document.createTextNode ("New div added");
+            newP.appendChild (newText);
+            p.parentNode.appendChild(newP);
+});
+
+</script>
+</body>
+</html>

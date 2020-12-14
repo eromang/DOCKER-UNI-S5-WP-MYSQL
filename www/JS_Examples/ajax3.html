@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ajax 2</title>
+<style>
+#responseArea { color: red; font-size: large; }
+</style>
+<script>
+function runAjax()
+{
+  let xhr = new XMLHttpRequest();
+  
+  xhr.onreadystatechange  = function()
+  { 
+         if(xhr.readyState  == 4)
+         {
+		    let t = document.getElementById ("responseArea");
+			let t2;
+              if(xhr.status  == 200) 
+                  t2 = document.createTextNode(xhr.responseText); 
+              else 
+                  t2 = document.createTextNode("Error code: " + xhr.status);
+            t.appendChild(t2);		
+         }
+  }; 
+
+   xhr.open("POST", "data.php",  true);
+   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");  
+   xhr.send("text=" + document.form1.text1.value); 
+}
+</script>
+</head>
+
+<body>
+
+<p>Please input text in text field and click "send":</p>
+<form name="form1">
+ <input type="text" name="text1" value="" />
+ <input type="button" value="Send" onclick="runAjax()" />
+</form>
+<br/>
+<div id="responseArea"></div>
+</body>
+</html>

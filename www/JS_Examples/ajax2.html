@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ajax 3</title>
+<style>
+#responseArea { color: red; font-size: large; }
+</style>
+<script>
+function runAjax()
+{
+  var xhr = new XMLHttpRequest();
+  
+  xhr.onreadystatechange  = function()
+  { 
+         if(xhr.readyState  == 4)
+         {
+		    var s = "Offered Food: ", t2, t = document.getElementById ("responseArea");
+			var food = xhr.responseXML.getElementsByTagName("food");
+			
+			for (var i = 0; i < food.length; i++)  
+			  { 
+			   s = s + food.item(i).childNodes[1].firstChild.nodeValue + " - ";
+			   } 
+			t2 = document.createTextNode(s);
+            t.appendChild(t2);		
+         }
+  }; 
+
+   xhr.open("GET", "data.xml",  true);  
+   xhr.send(null); 
+}
+</script>
+</head>
+
+<body>
+<form name="form1">
+ <input type="button" value="Run Ajax script" onclick="runAjax()" />
+</form>
+<br/>
+<div id="responseArea"></div>
+</body>
+</html>

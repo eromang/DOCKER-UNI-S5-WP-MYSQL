@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>DOM 4</title>
+<script>
+
+function changeColor(s)
+{
+  var p = document.getElementById("t1");
+  //p.setAttribute("style", "background-Color: " + s);
+  p.style.backgroundColor = s;
+  p.style.color= 'red';
+   
+}
+
+</script>
+</head>
+
+<body>
+<table border="1" id="t1" onmouseover="changeColor('red')" onmouseout="changeColor('yellow')">
+<tr><td onmouseover="changeColor('red')">Example Table 1.1</td><td>Example Table 1.2</td></tr>
+<tr><td>Example Table 2.1</td><td>Example Table 2.2</td></tr>
+</table>
+</body>
+</html>

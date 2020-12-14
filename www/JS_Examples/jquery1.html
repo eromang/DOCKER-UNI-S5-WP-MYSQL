@@ -1,0 +1,44 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+$(document).ready(function(){
+$("#drop_down").hide();
+$("#drop_down").animate({
+   opacity:0.5
+   });
+
+
+$("a:contains('Google')").click(
+  function() {  $("#drop_down").show("slow"); });
+
+$("#drop_down").mouseout(
+  function(){  $(this).hide('slow');  });
+});
+</script>
+<style>
+#drop_down {
+background:yellow;
+width:100px;
+z-index:1;
+}
+
+#hori_menu {
+height:60px;
+border: 2px solid #EEEEEE;
+width:200px;
+}
+</style>
+
+<div id="hori_menu">
+<a href="#">Google</a>
+<br />
+<div id="drop_down">
+jQuery<br />
+is<br />
+fun<br />
+and <br/>
+easy
+</div>
+</div>
+
+

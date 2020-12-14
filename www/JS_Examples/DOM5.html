@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>DOM 5</title>
+<script>
+var t, radians;
+var colors = ["blue", "violet", "red", "yellow"];
+var colorIndex = 0, colorChanges = 0;
+
+function initRotate()
+{
+  t = document.getElementById("p1");
+  t.style.position = "relative";
+  radians = 0;
+  setTimeout("rotate()", 100);
+}
+
+function rotate()
+{  
+  colorChanges ++;
+  if (colorChanges > 10)
+    {
+	colorChanges = 0;
+    t.style.backgroundColor = colors[colorIndex];
+    colorIndex = (colorIndex + 1) % colors.length; 
+  }
+  
+  if (radians > 4 * Math.PI)
+   {
+     t.style.left = "100px";
+	 t.style.top = "200px";
+	 return;
+   }
+   t.style.left = (100 + Math.round(Math.sin(radians) * 50)) + "px";
+   t.style.top = (200 + Math.round(Math.sin(2*radians) * 50)) + "px";
+   radians += Math.PI / 10;
+   setTimeout("rotate()", 500);
+}
+
+</script>
+</head>
+
+<body>
+<table border="1" id="p1" onmouseover="initRotate()">
+<tr><td>Example Table 1.1</td><td>Example Table 1.2</td></tr>
+<tr><td>Example Table 2.1</td><td>Example Table 2.2</td></tr>
+</table>
+</body>
+</html>

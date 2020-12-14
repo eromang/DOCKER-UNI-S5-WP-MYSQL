@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Javascript Demo</title>
+<script language="JavaScript" type="text/javascript">
+function chooseOption( )
+{
+  var n = document.demo.w.selectedIndex;
+  alert ("Chosen index : " + n);
+  document.demo.textfield1.value = n + " --> " + document.demo.w.options[n].value;
+}
+</script>
+</head>
+<body>
+<form name="demo">
+<select name="w" size="5" onChange="chooseOption()">
+<option>Option0</option>
+<option>Option1</option>
+<option>Option2</option>
+<option>Option3</option>
+<option>Option4</option>
+</select> <br /><br />
+<input name="textfield1" type="text" length="20" value="Please input text" />
+</form>
+
+</body>
+</html>

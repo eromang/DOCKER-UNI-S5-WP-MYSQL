@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>javascript Demo: Objects</title>
+<script language="javascript">
+ function vector2D(x ,y)
+ {
+  this.x = x; this.y = y;
+ }
+</script>
+</head>
+<body>
+<script language="javascript">
+ var point = new vector2D(1, 2);
+ document.write("<p>Point has x-coordinate " + point.x + " and y-coordinate " + point.y + "</p>");
+ point.z = 3 - 2;
+ document.write(`<p>z-coordinate is ${point.z}</p>`);
+</script>
+</body>
+</html>
