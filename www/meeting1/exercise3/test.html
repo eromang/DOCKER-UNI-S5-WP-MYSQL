@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="mystyle.css">
+    </head>
+<body onload="downloadAndStore()">
+
+<!--
+<div id="DownloadAndStore">
+<button type="button" onclick="downloadAndStore()">Download and store data</button>
+</div>
+-->
+
+<script>
+function downloadAndStore() {
+    //var i;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        //document.getElementById("DownloadAndStore").innerHTML = this.responseText;
+
+        var myArr = JSON.parse(this.responseText);
+        //document.getElementById("DownloadAndStore").innerHTML = myArr[0];
+
+        // Loop the JSON file
+        //for (i in myArr) {
+            //document.getElementById("DownloadAndStore").innerHTML += x + "<br>";
+            //document.getElementById("DownloadAndStore").innerHTML += myArr[i].country + "<br>";
+        //}
+      
+        // Storing data 
+        var myJSON = JSON.stringify(myArr);
+        localStorage.setItem("COVID_Stats_By_Countries", myJSON);
+
+        // Display end
+        //document.getElementById("DownloadAndStore").innerHTML += "Data downloaded and stored";
+    }
+  };
+  xhttp.open("GET", "https://disease.sh/v3/covid-19/countries", true);
+  xhttp.send();
+}
+</script>
+
+<!--
+<div id="LoadStoredData">
+<button type="button" onclick="LoadStoredData()">Load stored data</button>
+</div>
+
+<script>
+function LoadStoredData() {
+    var i;
+    data = localStorage.getItem("COVID_Stats_By_Countries");
+    myArr = JSON.parse(data);
+
+    // Loop the JSON file
+    for (i in myArr) {
+        //document.getElementById("LoadStoredData").innerHTML += x + "<br>";
+        document.getElementById("LoadStoredData").innerHTML += myArr[i].country + "<br>";
+    }
+    //document.getElementById("LoadStoredData").innerHTML = obj.name;
+
+    // Display end
+    document.getElementById("LoadStoredData").innerHTML += "Stored data loaded";
+}
+</script>
+-->
+
+</body>
+</html>
