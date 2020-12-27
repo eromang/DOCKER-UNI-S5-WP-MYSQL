@@ -117,11 +117,59 @@ map.on('singleclick', function (evt) {
             const diseases_data_json = JSON.parse(response);
 
             // Diseases Country
-            const diseases_country  = diseases_data_json.country;
-            
-            console.log("Clicked Diseases country is: " + diseases_country);
+            const diseases_country =                    diseases_data_json.country;
+            const disease_cases =                       numberWithDots(diseases_data_json.cases);
+            const disease_todayCases =                  numberWithDots(diseases_data_json.todayCases);
+            const disease_deaths =                      numberWithDots(diseases_data_json.deaths);
+            const disease_todayDeaths =                 numberWithDots(diseases_data_json.todayDeaths);
+            const disease_recovered =                   numberWithDots(diseases_data_json.recovered);
+            const disease_todayRecovered =              numberWithDots(diseases_data_json.todayRecovered);
+            const disease_active =                      numberWithDots(diseases_data_json.active);
+            const disease_critical =                    numberWithDots(diseases_data_json.critical);
+            const disease_casesPerOneMillion =          numberWithDots(diseases_data_json.casesPerOneMillion);
+            const disease_deathsPerOneMillion =         numberWithDots(diseases_data_json.deathsPerOneMillion);
+            //const disease_tests =                       numberWithDots(tests);
+            //const disease_testsPerOneMillion =          numberWithDots(testsPerOneMillion);
+            //const disease_oneCasePerPeople =            numberWithDots(oneCasePerPeople);
+            //const disease_oneDeathPerPeople =           numberWithDots(oneDeathPerPeople);
+            //const disease_oneTestPerPeople =            numberWithDots(oneTestPerPeople);
+            //const disease_activePerOneMillion =         numberWithDots(activePerOneMillion);
+            //const disease_recoveredPerOneMillion =      numberWithDots(recoveredPerOneMillion);
+            //const disease_criticalPerOneMillion =       numberWithDots(criticalPerOneMillion);
 
-            content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
+            console.log("Country: "                     + diseases_country);
+            console.log("Country cases: "               + disease_cases);
+            console.log("Country todayCase: "           + disease_todayCases);
+            console.log("Country deaths: "              + disease_deaths);
+            console.log("Country todayDeaths: "         + disease_todayDeaths);
+            console.log("Country recovered: "           + disease_recovered);
+            console.log("Country todayRecovered: "      + disease_todayRecovered);
+            console.log("Country active: "              + disease_active);
+            console.log("Country critical: "            + disease_critical);
+            console.log("Country casesPerOneMillion: "  + disease_casesPerOneMillion);
+            console.log("Country deathsPerOneMillion: " + disease_deathsPerOneMillion);
+            //console.log("Country tests: "               + disease_tests);
+            //console.log("Country testsPerOneMillion: "  + disease_testsPerOneMillion);
+            //console.log("Country oneCasePerPeople: "    + disease_oneCasePerPeople);
+            //console.log("Country oneDeathPerPeople: "   + disease_oneDeathPerPeople);
+            //console.log("Country oneTestPerPeople: "    + disease_oneTestPerPeople);
+            //console.log("Country activePerOneMillion: " + disease_activePerOneMillion);
+            //console.log("Country recoveredPerOneMillion: " + disease_recoveredPerOneMillion);
+            //console.log("Country criticalPerOneMillion: " + disease_criticalPerOneMillion);
+
+            content.innerHTML = '<p><h3>' + diseases_country + '</h3></p>' +
+                '<b>Today</b><br />' +
+                'Cases: ' + disease_todayCases + '<br />' +
+                'Deaths: ' + disease_todayDeaths + '<br />' +
+                'Recovered: ' + disease_todayRecovered + '<br />' +
+                '<br /><b>Total</b><br />' +
+                'Cases: ' + disease_cases + '<br />' +
+                'Deaths: ' + disease_deaths + '<br />' +
+                'Recovered: ' + disease_recovered + '<br />' +
+                'Active: ' + disease_active + '<br />' + 
+                'Critical: ' + disease_critical + '<br />' +
+                'Cases Per One Million: ' + disease_casesPerOneMillion + '<br />' +
+                'Deaths Per One Million: ' + disease_deathsPerOneMillion;
             overlay.setPosition(coordinate);
 
         });
@@ -151,4 +199,11 @@ function httpGet(url, callback) {
     getRequest.send();
 }
 
+/*
+* To process numbers
+*/
+
+function numberWithDots(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
