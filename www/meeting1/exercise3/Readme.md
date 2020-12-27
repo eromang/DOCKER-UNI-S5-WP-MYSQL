@@ -8,6 +8,20 @@ The application should initially show a map from OpenStreetMap. If a user clicks
 
 Your application must be written in JavaScript without usage of additional JS frameworks except the openlayers JS library. Please upload a zip archive with all required source files, a README file, and a small screencast showing your application in action.
 
+## Instructions
+
+- All NPM build code is in the root of exercise3 folder
+- Readme.md also available in the same root folder
+- index.html in the root folder is the starting point of the build colde
+- Folder sources contain the pre-build index.html, main.js and package.json file
+- exercise3 folder can be deployed on any the docker
+
+Requirements
+
+- npm v6.14.9
+- Node.js v14.15.3
+- Chrome, Firefox or Safari
+
 ## Resources
 
 JSON:
@@ -24,8 +38,6 @@ Nominatim:
 - https://nominatim.org/release-docs/develop/api/Reverse/
     - E.g. https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=22.3444&lon=74.123123&limit=1&zoom=3&accept-language=en&addressdetails=0
 
-## Source of data
-
 https://coronadatasource.org/api/corona-covid-19-api/
 
 *Worldmeters data – Returns data of all countries that has COVID-19* : https://disease.sh/v3/covid-19/countries (JSON)
@@ -33,7 +45,7 @@ https://coronadatasource.org/api/corona-covid-19-api/
 API documentation: https://disease.sh/docs/#/
 - https://disease.sh/v3/covid-19/countries/United%20States
 
-## JSON Documentation
+### JSON Documentation
 
 Receiving data
 - https://www.w3schools.com/js/tryit.asp?filename=tryjson_receive
@@ -47,14 +59,9 @@ Parsing data
 Stringify
 - https://www.w3schools.com/js/js_json_stringify.asp
 
-## Requirements
-
-- npm v6.14.9
-- Node.js v14.15.3
-
 ## NPM
 
-### Initial steps
+### Initial NPM steps
 
 From tutorial: https://openlayers.org/en/latest/doc/tutorials/bundle.html
 
@@ -79,6 +86,10 @@ To create a production bundle of your application, simply type:
 `npm run build`
 
 and copy the **dist/**   folder to your production server.
+
+
+
+
 
 
 
