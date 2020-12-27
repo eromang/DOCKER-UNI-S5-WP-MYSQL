@@ -1,39 +1,66 @@
 import 'ol/ol.css';
 import Map from 'ol/Map';
-import OSM from 'ol/source/OSM';
 import Overlay from 'ol/Overlay';
 import TileLayer from 'ol/layer/Tile';
 import View from 'ol/View';
+import XYZ from 'ol/source/XYZ';
 import {fromLonLat, toLonLat} from 'ol/proj';
 import {toStringHDMS} from 'ol/coordinate';
 import * as olProj from 'ol/proj';
-import { Disposable } from 'ol';
 
-var layer = new TileLayer({
-  source: new OSM(),
-});
+/**
+ * Elements that make up the popup.
+ */
+var container = document.getElementById('popup');
+var content = document.getElementById('popup-content');
+var closer = document.getElementById('popup-closer');
+
+/**
+ * Create an overlay to anchor the popup to the map.
+ */
+var overlay = new Overlay({
+    element: container,
+    autoPan: true,
+    autoPanAnimation: {
+      duration: 250,
+    },
+  });
+
+/**
+ * Add a click handler to hide the popup.
+ * @return {boolean} Don't follow the href.
+ */
+closer.onclick = function () {
+    overlay.setPosition(undefined);
+    closer.blur();
+    return false;
+};
+
+var key = 'bCVzgaOVuGoXXhOLB8kY';
+var attributions =
+  '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> ' +
+  '<a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>';
 
 var map = new Map({
-  layers: [layer],
-  target: 'map',
-  view: new View({
+    layers: [
+        new TileLayer({
+            source: new XYZ({
+                attributions: attributions,
+                url: 'https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=' + key,
+                tileSize: 512,
+        }),
+    }) ],
+    overlays: [overlay],
+    target: 'map',
+    view: new View({
     center: [0, 0],
     zoom: 2,
-  }),
+    }),
 });
 
-var pos = fromLonLat([16.3725, 48.208889]);
+// Mouse-SingleClick event 
+map.on('singleclick', function (evt) {
 
-// Popup showing the position the user clicked
-var popup = new Overlay({
-  element: document.getElementById('popup'),
-});
-map.addOverlay(popup);
-
-// Mouse-Click event 
-map.on('click', function (evt) {
-
-    var element = popup.getElement();
     var coordinate = evt.coordinate;
     var hdms = toStringHDMS(toLonLat(coordinate));
 
@@ -94,22 +121,11 @@ map.on('click', function (evt) {
             
             console.log("Clicked Diseases country is: " + diseases_country);
 
+            content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
+            overlay.setPosition(coordinate);
+
         });
-
     });
-
-
-
-    $(element).popover('dispose');
-    popup.setPosition(coordinate);
-    $(element).popover({
-        container: element,
-        placement: 'top',
-        animation: false,
-        html: true, 
-        content: '<p>:</p><code>' + hdms + '</code>',
-    });
-    $(element).popover('show');
 });
 
 /*
