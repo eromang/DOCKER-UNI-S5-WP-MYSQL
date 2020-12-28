@@ -15,6 +15,7 @@ Your application must be written in JavaScript without usage of additional JS fr
 - index.html in the root folder is the starting point of the build colde
 - Folder sources contain the pre-build index.html, main.js and package.json file
 - exercise3 folder can be deployed on any the docker
+- Day-1 data is used (see e-mail exchange with me on the 28 december)
 
 Requirements
 

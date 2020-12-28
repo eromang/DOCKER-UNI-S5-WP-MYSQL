@@ -106,7 +106,8 @@ map.on('singleclick', function (evt) {
         const nominatim_country  = nominatim_data_json.display_name;
         console.log("Clicked Nominatim country is: " + nominatim_country);
 
-        const url_diseases = 'https://disease.sh/v3/covid-19/countries/' + encodeURIComponent(nominatim_country);
+        const url_diseases = 'https://disease.sh/v3/covid-19/countries/' + 
+            encodeURIComponent(nominatim_country) + '?yesterday=true';
         console.log("URL Request to DISEASE: " + url_diseases);
 
         // Call to Diseases to get the clicked country related data
@@ -158,7 +159,7 @@ map.on('singleclick', function (evt) {
             //console.log("Country criticalPerOneMillion: " + disease_criticalPerOneMillion);
 
             content.innerHTML = '<p><h3>' + diseases_country + '</h3></p>' +
-                '<b>Today</b><br />' +
+                '<b>Yesterday</b><br />' +
                 'Cases: ' + disease_todayCases + '<br />' +
                 'Deaths: ' + disease_todayDeaths + '<br />' +
                 'Recovered: ' + disease_todayRecovered + '<br />' +
@@ -200,7 +201,7 @@ function httpGet(url, callback) {
 }
 
 /*
-* To process numbers
+* To process numbers and add dots
 */
 
 function numberWithDots(x) {
