@@ -53929,26 +53929,30 @@ map.on('singleclick', function (evt) {
       // JSON Data of the response to the request Diseases
       var diseases_data_json = JSON.parse(response); // Diseases Country
 
-      var diseases_country = diseases_data_json.country;
-      var disease_cases = numberWithDots(diseases_data_json.cases);
-      var disease_todayCases = numberWithDots(diseases_data_json.todayCases);
-      var disease_deaths = numberWithDots(diseases_data_json.deaths);
-      var disease_todayDeaths = numberWithDots(diseases_data_json.todayDeaths);
-      var disease_recovered = numberWithDots(diseases_data_json.recovered);
-      var disease_todayRecovered = numberWithDots(diseases_data_json.todayRecovered);
-      var disease_active = numberWithDots(diseases_data_json.active);
-      var disease_critical = numberWithDots(diseases_data_json.critical);
-      var disease_casesPerOneMillion = numberWithDots(diseases_data_json.casesPerOneMillion);
-      var disease_deathsPerOneMillion = numberWithDots(diseases_data_json.deathsPerOneMillion); //const disease_tests =                       numberWithDots(tests);
-      //const disease_testsPerOneMillion =          numberWithDots(testsPerOneMillion);
-      //const disease_oneCasePerPeople =            numberWithDots(oneCasePerPeople);
-      //const disease_oneDeathPerPeople =           numberWithDots(oneDeathPerPeople);
-      //const disease_oneTestPerPeople =            numberWithDots(oneTestPerPeople);
-      //const disease_activePerOneMillion =         numberWithDots(activePerOneMillion);
-      //const disease_recoveredPerOneMillion =      numberWithDots(recoveredPerOneMillion);
-      //const disease_criticalPerOneMillion =       numberWithDots(criticalPerOneMillion);
-
-      console.log("Country: " + diseases_country);
+      var diseases_country = nominatim_country;
+      var diseases_country_flag = diseases_data_json.countryInfo.flag;
+      var diseases_country_code = diseases_data_json.countryInfo.iso3;
+      var disease_cases = numberWithCommas(diseases_data_json.cases);
+      var disease_todayCases = numberWithCommas(diseases_data_json.todayCases);
+      var disease_deaths = numberWithCommas(diseases_data_json.deaths);
+      var disease_todayDeaths = numberWithCommas(diseases_data_json.todayDeaths);
+      var disease_recovered = numberWithCommas(diseases_data_json.recovered);
+      var disease_todayRecovered = numberWithCommas(diseases_data_json.todayRecovered);
+      var disease_active = numberWithCommas(diseases_data_json.active);
+      var disease_critical = numberWithCommas(diseases_data_json.critical);
+      var disease_casesPerOneMillion = numberWithCommas(diseases_data_json.casesPerOneMillion);
+      var disease_deathsPerOneMillion = numberWithCommas(diseases_data_json.deathsPerOneMillion);
+      var disease_tests = numberWithCommas(diseases_data_json.tests);
+      var disease_testsPerOneMillion = numberWithCommas(diseases_data_json.testsPerOneMillion);
+      var disease_oneCasePerPeople = numberWithCommas(diseases_data_json.oneCasePerPeople);
+      var disease_oneDeathPerPeople = numberWithCommas(diseases_data_json.oneDeathPerPeople);
+      var disease_oneTestPerPeople = numberWithCommas(diseases_data_json.oneTestPerPeople);
+      var disease_activePerOneMillion = diseases_data_json.activePerOneMillion;
+      var disease_recoveredPerOneMillion = diseases_data_json.recoveredPerOneMillion;
+      var disease_criticalPerOneMillion = diseases_data_json.criticalPerOneMillion;
+      console.log("Country: " + nominatim_country);
+      console.log("Country flag: " + diseases_country_flag);
+      console.log("Country code: " + diseases_country_code);
       console.log("Country cases: " + disease_cases);
       console.log("Country todayCase: " + disease_todayCases);
       console.log("Country deaths: " + disease_deaths);
@@ -53958,16 +53962,16 @@ map.on('singleclick', function (evt) {
       console.log("Country active: " + disease_active);
       console.log("Country critical: " + disease_critical);
       console.log("Country casesPerOneMillion: " + disease_casesPerOneMillion);
-      console.log("Country deathsPerOneMillion: " + disease_deathsPerOneMillion); //console.log("Country tests: "               + disease_tests);
-      //console.log("Country testsPerOneMillion: "  + disease_testsPerOneMillion);
-      //console.log("Country oneCasePerPeople: "    + disease_oneCasePerPeople);
-      //console.log("Country oneDeathPerPeople: "   + disease_oneDeathPerPeople);
-      //console.log("Country oneTestPerPeople: "    + disease_oneTestPerPeople);
-      //console.log("Country activePerOneMillion: " + disease_activePerOneMillion);
-      //console.log("Country recoveredPerOneMillion: " + disease_recoveredPerOneMillion);
-      //console.log("Country criticalPerOneMillion: " + disease_criticalPerOneMillion);
-
-      content.innerHTML = '<p><h3>' + diseases_country + '</h3></p>' + '<b>Yesterday</b><br />' + 'Cases: ' + disease_todayCases + '<br />' + 'Deaths: ' + disease_todayDeaths + '<br />' + 'Recovered: ' + disease_todayRecovered + '<br />' + '<br /><b>Total</b><br />' + 'Cases: ' + disease_cases + '<br />' + 'Deaths: ' + disease_deaths + '<br />' + 'Recovered: ' + disease_recovered + '<br />' + 'Active: ' + disease_active + '<br />' + 'Critical: ' + disease_critical + '<br />' + 'Cases Per One Million: ' + disease_casesPerOneMillion + '<br />' + 'Deaths Per One Million: ' + disease_deathsPerOneMillion;
+      console.log("Country deathsPerOneMillion: " + disease_deathsPerOneMillion);
+      console.log("Country tests: " + disease_tests);
+      console.log("Country testsPerOneMillion: " + disease_testsPerOneMillion);
+      console.log("Country oneCasePerPeople: " + disease_oneCasePerPeople);
+      console.log("Country oneDeathPerPeople: " + disease_oneDeathPerPeople);
+      console.log("Country oneTestPerPeople: " + disease_oneTestPerPeople);
+      console.log("Country activePerOneMillion: " + disease_activePerOneMillion);
+      console.log("Country recoveredPerOneMillion: " + disease_recoveredPerOneMillion);
+      console.log("Country criticalPerOneMillion: " + disease_criticalPerOneMillion);
+      content.innerHTML = '<table><tr><td align="left"><img src=' + diseases_country_flag + ' width="30" height="20" style="vertical-align:middle;"></td><td align="right"><h3>' + nominatim_country + '</h3></td></tr></table>' + '<b>Yesterday</b><br />' + 'Cases: ' + disease_todayCases + '<br />' + 'Deaths: ' + disease_todayDeaths + '<br />' + 'Recovered: ' + disease_todayRecovered + '<br />' + '<br /><b>Total</b><br />' + 'Tests: ' + disease_tests + '<br />' + 'Cases: ' + disease_cases + '<br />' + 'Deaths: ' + disease_deaths + '<br />' + 'Recovered: ' + disease_recovered + '<br />' + 'Active: ' + disease_active + '<br />' + 'Critical: ' + disease_critical + '<br /><br />' + 'Tests Per One Million: ' + disease_testsPerOneMillion + '<br />' + 'Cases Per One Million: ' + disease_casesPerOneMillion + '<br />' + 'Deaths Per One Million: ' + disease_deathsPerOneMillion + '<br />' + 'One Case Per People: ' + disease_oneCasePerPeople + '<br />' + 'One Death Per People: ' + disease_oneDeathPerPeople + '<br />' + 'One Test Per People: ' + disease_oneTestPerPeople + '<br />' + 'Active Per One Million: ' + disease_activePerOneMillion + '<br />' + 'Recovered Per One Million: ' + disease_recoveredPerOneMillion + '<br />' + 'Critical Per One Million: ' + disease_criticalPerOneMillion;
       overlay.setPosition(coordinate);
     });
   });
@@ -53994,8 +53998,8 @@ function httpGet(url, callback) {
 */
 
 
-function numberWithDots(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 },{"ol/ol.css":"node_modules/ol/ol.css","ol/Map":"node_modules/ol/Map.js","ol/Overlay":"node_modules/ol/Overlay.js","ol/layer/Tile":"node_modules/ol/layer/Tile.js","ol/View":"node_modules/ol/View.js","ol/source/XYZ":"node_modules/ol/source/XYZ.js","ol/proj":"node_modules/ol/proj.js","ol/coordinate":"node_modules/ol/coordinate.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -54025,7 +54029,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55401" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56516" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
